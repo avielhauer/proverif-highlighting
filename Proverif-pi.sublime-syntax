@@ -1,0 +1,46 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+# Oniguruma RegEx: https://raw.githubusercontent.com/kkos/oniguruma/master/doc/RE
+file_extensions:
+  - [pv]
+scope: source.proverif-pi
+contexts:
+  main:
+    # comments
+    - match: '\(\*'
+      scope: comment.block
+      push: commentMatched
+
+    # variables
+    - match: '\b(free|new)\b'
+      scope: keyword
+
+    # channels
+    - match: '\b(in|out)\b'
+      scope: channel
+
+    # keywords
+    - match: '\b(choice|private|reduc|where|can fail|noninterf|weaksecret|elimtrue|not|nounif|equation|pred|otherwise|param|event|query|fun|if|then|else|phase|sync|!|==>|<=>|<->|->|&|\|)\b'
+      scope: keyword
+
+    # let in
+    - match: '(let).*(in)\s'
+      captures:
+        1: keyword
+        2: keyword
+
+    # attacker
+    - match: '\battacker\b'
+      scope: attacker
+
+    # processes
+    - match: '\b(process|let.*=\s*$)\s*'
+      scope: process
+
+  commentMatched:
+    - match: '.*\*\)'
+      scope: comment.block
+      pop: true
+    - match: '.*'
+      scope: comment.block
