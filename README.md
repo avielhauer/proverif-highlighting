@@ -6,8 +6,6 @@ Works for Sublime Text 3 (build >= 3084)
 
 ## Installation
 
-### Windows
-
 Copy `Proverif-pi.*` files to
 
 * Windows: `%APPDATA%\Sublime Text 3\Packages\User\`
